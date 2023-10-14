@@ -1,0 +1,13 @@
+input{
+  color: $grey-800;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  background: $grey-100;
+  border: none;
+  outline-offset: -0.125rem;
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  &.form-input{ padding: .75rem 1rem; }
+  &::placeholder{ color: $grey-500; }
+  &.error{ outline: .125rem solid $red; }
+}

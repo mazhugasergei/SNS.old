@@ -1,0 +1,19 @@
+$grey-900: #1b141f;
+$grey-800: #48434B;
+$grey-600: #7C7381;
+$grey-500: #A09BA3;
+$grey-100: #F5F4F6;
+$golden-yellow: #E7BD43;
+$brand-yellow: #FBD157;
+$bright-yellow: #FFE56B;
+$dark-yellow: #C99F25;
+$dark-maroon: #53435B;
+$blue: #716EFF;
+$red: #F77;
+$eggshell: #FFF8F5;
+
+body, a, .btn{ color: $grey-900; }
+
+.error{ color: $red; }
+
+*:focus-visible{ outline-color: $brand-yellow; }

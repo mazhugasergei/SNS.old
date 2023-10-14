@@ -1,7 +1,7 @@
 export default () => {
   return (
-    <main className="wrapper">
-      home
+    <main className="log-in wrapper">
+      log-in
     </main>
   )
 }

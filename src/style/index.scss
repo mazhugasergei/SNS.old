@@ -1,0 +1,15 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@import "./ui/animations";
+@import "./ui/colors";
+@import "./ui/typography";
+@import "./ui/layout";
+@import "./components/buttons";
+@import "./components/inputs";
+@import "./components/forms";
+@import "./components/header";
+@import "./pages/verification";

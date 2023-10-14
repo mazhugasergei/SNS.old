@@ -1,0 +1,20 @@
+:root{
+  --wrapper-padding-inline: 1rem;
+}
+
+html{
+  min-height: 100%;
+  display: flex;
+}
+
+body{
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.wrapper{
+  padding-inline: var(--wrapper-padding-inline);
+}
+
+svg, img{ display: block; }
