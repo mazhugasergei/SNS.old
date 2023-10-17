@@ -3,8 +3,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 export interface UserState {
   auth?: boolean
-  email?: string | undefined
-  password?: string | undefined
+  email?: string
+  password?: string
+  token?: string
 }
 
 const initialState: UserState = {
@@ -19,6 +20,7 @@ export const userSlice = createSlice({
       state.auth = action.payload.auth
       state.email = action.payload.email
       state.password = action.payload.password
+      state.token = action.payload.token
     }
   }
 })

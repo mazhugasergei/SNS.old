@@ -1,7 +1,5 @@
 main.verification{
-  .code-input{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .5rem;
+  input[type=text]{
+    text-align: center;
   }
 }
