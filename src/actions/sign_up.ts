@@ -31,7 +31,7 @@ export default async (email: string, username: string, fullname: string, passwor
   }
 
   // send email
-  // transporter.sendMail(message)
+  transporter.sendMail(message)
 
   return
 }
