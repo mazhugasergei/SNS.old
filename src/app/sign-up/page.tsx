@@ -1,16 +1,19 @@
 "use client"
 import Link from "next/link"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import sign_up from "@/actions/sign_up"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setUser } from "@/store/slices/user.slice"
 import { useRouter } from "next/navigation"
 import LoadingSVG from "@/images/loading.svg"
 import Image from "next/image"
+import { RootState } from "@/store/store"
 
 export default () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const auth = useSelector((state: RootState) => state.user.auth)
+  const [loggedIn,  setLoggedIn] = useState(true)
   const [email, setEmail] = useState("markuswedler8@gmail.com")
   const [username, setUsername] = useState("markuswedler")
   const [fullname, setFullname] = useState("Markus Wedler")
@@ -19,6 +22,12 @@ export default () => {
   const passwordRegex = /^[a-zA-Z0-9!@#$%^&*_.,\b]*$/
   const [error, setError] = useState<{ status: number, message: string } | null>()
   const [pending, setPending] = useState(false)
+
+  // redirect if logged in
+  useEffect(()=>{
+    if(auth) router.push("/")
+    else setLoggedIn(false)
+  })
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setError(null)
@@ -58,13 +67,14 @@ export default () => {
         }
         // redirect
         else{
-          dispatch(setUser({ email }))
+          dispatch(setUser({ email, is_signing_up: true }))
+          setTimeout(() => dispatch(setUser({ email: null, is_signing_up: false })), 300000)
           router.push("/verification")
         }
       })
   }
 
-  return (
+  return !loggedIn && (
     <main className="sign-up form-cont wrapper">
       <div className="title">Sign up</div>
       <form onSubmit={handleSubmit} method="post">

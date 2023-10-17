@@ -2,7 +2,7 @@
 import verify from "@/actions/verify"
 import { RootState } from "@/store/store"
 import { useRouter } from "next/navigation"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Image from "next/image"
 import LoadingSVG from "@/images/loading.svg"
@@ -11,10 +11,18 @@ import { setUser } from "@/store/slices/user.slice"
 export default () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const is_signing_up = useSelector((state: RootState) => state.user.is_signing_up)
   const email = useSelector((state: RootState) => state.user.email)
+  const [signingUp,  setSigningUp] = useState(false)
   const [verificationCode,  setVerificationCode] = useState("")
   const [error, setError] = useState<{ status: number, message: string } | null>()
   const [pending, setPending] = useState(false)
+
+  // redirect if not signing up
+  useEffect(()=>{
+    if(!is_signing_up) router.push("/")
+    else setSigningUp(true)
+  })
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setError(null)
@@ -43,7 +51,7 @@ export default () => {
       })
   }
 
-  return (
+  return signingUp && (
     <main className="verification form-cont wrapper">
       <div className="title">Email Code</div>
       <form onSubmit={handleSubmit}>
